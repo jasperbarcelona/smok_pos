@@ -1,0 +1,29 @@
+{% if items %}
+<table id="currentTransactionTable" class="table">
+	<thead>
+		<tr>
+			<th class="align-left"></th>
+			<th class="align-left">Item</th>
+			<th class="align-right">Qty</th>
+			<th class="align-right">Price</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for item in items %}
+		<tr>
+			<td id="{{item.id}}" onclick="get_item_to_delete(this.id)" class="align-left col-xs-1" data-toggle="modal" data-target="#deleteOrderModal"><span class="glyphicon glyphicon-remove delete-from-cart"></span></td>
+			<td id="itemNameTd" class="align-left col-xs-6">{{item.name}}</td>
+			<td class="align-right col-xs-1">{{item.quantity}}</td>
+			<td class="align-right col-xs-4">Php {{item.price}}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<div class="total-container col-xs-12">
+	<span class="total-label">TOTAL:</span><span class="total" id="orderTotal">Php {{total}}</span>
+</div>
+{% else %}
+<div class="no-transaction">
+	<h4>No Transaction</h4>
+</div>
+{% endif %}

@@ -1,0 +1,24 @@
+<table class="table" id="existingTable">
+	<thead>
+		<tr>
+			<th class="align-right"></th>
+			<th class="align-left">Customer</th>
+			<th class="align-left">Date</th>
+			<th class="align-left">Time</th>
+			<th class="align-center">Status</th>
+			<th class="align-right">Price</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for transaction in existing %}
+			<tr id="{{transaction.id}}" onclick="save_transaction_id(this.id)">
+				<td class="align-right">{{loop.index}}</td>
+				<td class="align-left">{{transaction.customer_name}}</td>
+				<td class="align-left">{{transaction.date}}</td>
+				<td class="align-left">{{transaction.time}}</td>
+				<td class="align-center">{{transaction.remarks}}</td>
+				<td class="align-right">{{transaction.total}}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>

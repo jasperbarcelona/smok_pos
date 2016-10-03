@@ -1,0 +1,86 @@
+import flask, flask.views
+from flask import url_for, request, session, redirect, jsonify, Response, make_response, current_app
+from jinja2 import environment, FileSystemLoader
+from flask.ext.sqlalchemy import SQLAlchemy
+from sqlalchemy.ext.orderinglist import ordering_list
+from flask.ext import admin
+from flask.ext.admin.contrib import sqla
+from flask.ext.admin.contrib.sqla import ModelView
+from flask.ext.admin import Admin, BaseView, expose
+from dateutil.parser import parse as parse_date
+from flask import render_template, request
+from functools import update_wrapper
+from flask import session, redirect
+from datetime import timedelta
+from datetime import datetime
+import requests
+import datetime
+import time
+import json
+import uuid
+import os
+
+app = flask.Flask(__name__)
+db = SQLAlchemy(app)
+app.secret_key = '234234rfascasascqweqscasefsdvqwefe2323234dvsv'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///local.db'
+# os.environ['DATABASE_URL']
+# 'sqlite:///local.db'
+class Item(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20))
+    category = db.Column(db.String(20))
+    description = db.Column(db.String(1000))
+    price = db.Column(db.Integer())
+    stock = db.Column(db.Integer())
+    image = db.Column(db.String(60))
+
+class Cashier(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(30))
+    last_name = db.Column(db.String(30))
+    id_no = db.Column(db.String(20))
+    password = db.Column(db.String(4))
+
+class Transaction(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String(30))
+    time = db.Column(db.String(10))
+    cashier_id = db.Column(db.Integer())
+    cashier_name = db.Column(db.String(60))
+    customer_id = db.Column(db.Integer(), nullable=True)
+    customer_name = db.Column(db.String(60), nullable=True)
+    customer_department = db.Column(db.String(30), nullable=True)
+    payment_method = db.Column(db.String(10))
+    timestamp = db.Column(db.String(50))
+
+class TransactionItem(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    transaction_id = db.Column(db.Integer)
+    item_id = db.Column(db.Integer)
+
+class POSAdmin(sqla.ModelView):
+    column_display_pk = True
+    
+admin = Admin(app)
+admin.add_view(POSAdmin(Item, db.session))
+admin.add_view(POSAdmin(Cashier, db.session))
+admin.add_view(POSAdmin(Transaction, db.session))
+admin.add_view(POSAdmin(TransactionItem, db.session))
+
+
+@app.route('/', methods=['GET', 'POST'])
+def login():
+    return render_template('index.html'), 200
+
+
+@app.route('/db/rebuild', methods=['GET', 'POST'])
+def rebuild_database():
+    db.drop_all()
+    db.create_all()
+    return jsonify(status='success'), 201
+
+
+if __name__ == '__main__':
+    app.debug = True
+    app.run()

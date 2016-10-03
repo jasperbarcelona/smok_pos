@@ -1,0 +1,28 @@
+<div class="transaction-modal-info">
+    <div class="transaction-modal-info-left">
+        <span>#{{transaction.id}}</span>
+    </div>
+    <div class="transaction-modal-info-right">
+        <span>Added by {{transaction.cashier_name}}</span>
+    </div>
+</div>
+<div class="transaction-modal-table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="align-left">Item</th>
+                <th class="align-right">Qty</th>
+                <th class="align-right">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td class="align-left">{{item.item_name}}</td>
+                <td class="align-right">{{item.item_name}}</td>
+                <td class="align-right">{{item.price}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

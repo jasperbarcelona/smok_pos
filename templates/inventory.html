@@ -1,0 +1,27 @@
+<div class="inventory-icon-container col-xs-12">
+	<div class="icons-left">
+		<i class="material-icons inventory-add-icon">&#xE145;</i>
+	</div>
+	<div class="icons-right">
+		<i class="material-icons inventory-search-icon">&#xE8B6;</i>
+		<i class="material-icons inventory-refresh-icon">&#xE5D5;</i>
+	</div>
+</div>
+<div class="inventory-table-container col-xs-12">
+	<table class="table" id="inventoryTable">
+		<thead>
+			<tr>
+				<th class="align-left">Item</th>
+				<th class="align-right">Stock</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in inventory %}
+			<tr id="{{item.id}}" data-toggle="modal" data-target="#adjustmentModal" onclick="get_item_to_adjust(this.id)">
+				<td class="align-left col-xs-4">{{item.name}}</td>
+				<td class="align-right col-xs-3">{{item.stock}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>

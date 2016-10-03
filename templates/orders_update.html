@@ -1,0 +1,44 @@
+{% for order in orders %}
+<div class="order-slip col-xs-4">
+<div class="order-slip-header">
+	<div>
+	<h4>Order #{{order.id}}</h4><br />
+	<h4>Customer: {{order.customer_name}}</h4>
+	<br />
+	</div>
+	<div class="order-btn-container">
+		{% if order.remarks == 'Pending' %}
+		<button id="{{order.id}}"  type="button" class="btn btn-danger order-btn" onclick="order_status(this.id,'Processing')">Prepare</button>
+		{% else %}
+		<button id="{{order.id}}"  type="button" class="btn btn-success order-btn" onclick="order_status(this.id,'Done')">Done</button>
+		{% endif %}
+	</div>
+</div>
+<table class="table">
+	<thead>
+		<tr>
+			<th class="align-left"></th>
+			<th class="align-left">Item</th>
+			<th class="align-right">Qty</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for item in items %}
+		{% for i in item %}
+		{% if i.transaction_id == order.id %}
+		<tr>
+			<td class="align-left">
+			{% if i.done == True %}
+			<span class="glyphicon glyphicon-ok"></span>
+			{% endif %}
+			</td>
+			<td class="align-left">{{i.item_name}}</td>
+			<td class="align-right">{{i.item_qty}}</td>
+		</tr>
+		{% endif %}
+		{% endfor %}
+		{% endfor %}
+	</tbody>
+</table>
+</div>
+{% endfor %}

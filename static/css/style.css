@@ -1,0 +1,802 @@
+@font-face{
+		font-family: OpenSans;
+		src:url('../fonts/OpenSans-Regular.ttf');
+	}
+
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, em, img, strong, sub, sup, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figure, figcaption, footer, header, hgroup, 
+menu, nav, output, section, time {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+html{
+	width: 100%;
+	height: 100vh;
+	background-color: #FDFDFD;
+}
+
+body{
+	width: 100%;
+	height: 100%;
+
+	overflow-x: hidden;
+	font-family: OpenSans;
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+  	-moz-user-select: none;     /* Firefox all */
+  	-ms-user-select: none;
+}
+
+#pos{
+	position: relative;
+	margin: 0 !important;
+	padding: 0;
+	width: 100%  !important;
+	height: 100vh;
+}
+
+.option-select{
+	margin: 10px 0 40px 0;
+	height: 45px !important;
+}
+
+.pos-left,
+.pos-right{
+	height: 100%;
+}
+
+.pos-left{
+	background-color: #EDEAE7;
+	padding: 20px;
+}
+
+.pos-right{
+	background-color: #FFFFFF;
+	padding: 0;
+
+}
+
+.panel{
+	border-radius: 0 !important;
+}
+
+#currentTransactionPanel > .panel-heading{
+	text-transform: uppercase;
+	text-align: center;
+	height: 40px;
+}
+
+#currentTransactionPanel{
+	border: none !important;
+	height: 100%;
+}
+
+#currentTransactionPanel > .panel-body{
+	position: relative;
+	height: calc(100% - 117px);
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+#currentTransactionPanel > .panel-footer{
+	padding: 15px !important;
+	background-color: #FFFFFF;
+}
+
+#currentTransactionPanel > .panel-footer > button{
+	width: calc(50% - 10px);
+	height: 45px;
+	text-transform: uppercase;
+	font-weight: bold;
+	border-radius: 0 !important;
+}
+
+#cancelTransactionBtn{
+	margin-right: 10px !important;
+}
+
+.align-left{
+	text-align: left !important;
+}
+
+.align-right{
+	text-align: right !important;
+}
+
+.align-center{
+	text-align: center !important;
+}
+
+.tab-content{
+	padding: 0;
+}
+
+.search-container{
+	padding: 0;
+	height: 60px;
+	border-bottom: 1px solid #929292;
+}
+
+.search-icon-container{
+	float: left;
+	padding-top: 3px;
+	height: 100%;
+	font-size: 20px;
+	color: #929292;
+	padding-left: 20px;
+}
+
+.search-icon-container > i{
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.search-box-container{
+	height: 100%;
+	padding: 0;
+}
+
+.search-box-container > .form-control{
+	font-size: 16px;
+	border: none !important;
+	box-shadow: none !important;
+}
+
+#searchBox{
+	height: 100% !important;
+	width: 100%;
+}
+
+.nav-tabs{
+	padding: 0;
+}
+
+.nav-tabs > li{
+	padding: 0;
+	background-color: #EDEAE7;
+	width: 20%;
+}
+
+.no-transaction{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: #FFFFFF;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+.nav-tabs > li > a{
+	border-radius: 0 !important;
+	height: 60px;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	text-transform: uppercase;
+	color: #337ab7;
+	font-size: 12px;
+	font-weight: bold;
+	background-color: #EDEAE7;
+}
+
+.first-tab.active > a{
+	border-left: none !important;
+}
+
+.nav-tabs > li > a:focus{
+	outline: none !important;
+}
+
+
+/* ITEMS */
+
+.items-container{
+	float: left;
+	width: 100%;
+	height: calc(100vh - 120px);
+	overflow: scroll;
+	overflow-x: hidden;
+	padding: 10px 20px 10px 20px;
+}
+
+.item-category-label{
+	color: #6D6D6D;
+	margin-bottom: 5px;
+}
+
+.item-group{
+	padding: 10px 0px 10px 0px;
+}
+
+.item-group > div{
+	padding: 5px 5px 0px 0px;
+}
+
+.item{
+	padding: 10px;
+	position: relative;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.item-group:nth-child(odd) > div > .item{
+	background-color: #337ab7;
+	color: #FFFFFF;
+}
+
+.item-group:nth-child(even) > div > .item{
+	background-color: #03A6F0;
+	color: #FFFFFF;
+}
+
+.item-group{
+	float: left;
+	margin-bottom: 20px;
+}
+
+.item-name{
+	text-align: center;
+	font-size: 18px;
+}
+
+.item > div{
+	position: absolute;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.qty-modal-header,
+.delete-order-modal-header,
+.cancel-transaction-modal-header,
+.payment-selection-modal-header,
+.cash-transaction-modal-header,
+.pay-transaction-modal-header{
+	background-color: #337ab7;
+	color: #FFFFFF;
+	text-transform: uppercase;
+}
+
+.payment-selection-container{
+	position: relative;
+	margin-top: 10px;
+	padding: 10px 0 10px 0;
+	margin: 0;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+.payment-method{
+	border: 2px solid #337ab7;
+	border-radius: 0;
+	width: calc(50% - 5px);
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	height: 170px;
+	cursor: pointer;
+	background-color: #337ab7;
+	color: #FFFFFF;
+}
+
+.extra-payment-method{
+	width: 100%;
+	border: 2px solid #337ab7;
+	border-radius: 0;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	height: 60px;
+	cursor: pointer;
+	background-color: #337ab7;
+	color: #FFFFFF;
+	margin-bottom: 5px;
+}
+
+#cashPayment{
+	margin-right: 10px;
+}
+
+#cashPayment > span,
+#ewalletPayment > span,
+#addToExisting > span{
+	font-size: 18px;
+}
+
+.form-control{
+	border-radius: 0;
+}
+
+.payment-selection-cover{
+	position: absolute;
+	z-index: 10000;
+	background-color: #FFFFFF;
+	height: 100%;
+	width: 100%;
+	opacity: 0.6;
+	top: 0;
+}
+
+#customerName{
+	height: 50px;
+}
+
+.qty-container > div{
+	margin-top: 10px;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+.qty-container{
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+.qty-modal-dialog,
+.delete-order-modal-dialog,
+.cancel-transaction-modal-dialog,
+.cash-transaction-modal-dialog,
+.pay-transaction-modal-dialog{
+	width: 400px;
+}
+
+.payment-selection-modal-dialog{
+	width: 500px;
+}
+
+.modal-content{
+	border-radius: 0 !important;
+}
+
+.qty-operation{
+	font-size: 48px;
+	color: #337ab7;
+	cursor: pointer;
+	width: 30px;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+#quantity{
+	text-align: center;
+	width: 80px !important;
+	height: 50px !important;
+	font-size: 28px;
+	margin: 0 30px 0 30px;
+}
+
+.qty-modal-footer,
+.delete-order-modal-footer,
+.cancel-transaction-modal-footer,
+.payment-selection-modal-footer,
+.cash-transaction-modal-footer,
+.pay-transaction-modal-footer{
+	padding: 15px !important;
+}
+
+.qty-modal-footer > button,
+.delete-order-modal-footer > button,
+.cancel-transaction-modal-footer > button,
+.payment-selection-modal-footer > button,
+.cash-transaction-modal-footer > button,
+.pay-transaction-modal-footer > button{
+	width: calc(50% - 10px);
+	height: 40px;
+	border-radius: 0 !important;
+}
+
+.delete-order-modal-body,
+.cancel-transaction-modal-body{
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+.cash-transaction-modal-body,
+.pay-transaction-modal-body{
+	text-align: center;
+}
+
+.cash-transaction-modal-body > strong,
+.cash-transaction-modal-body > span,
+.pay-transaction-modal-body > span{
+	font-size: 18px;
+}
+
+.cash-transaction-modal-body > strong,
+.pay-transaction-modal-body > strong{
+	margin-right: 5px;
+}
+
+#amountTendered,
+#payAmountTendered{
+	border-radius: 0 !important;
+	text-align: right !important;
+}
+
+.cash-transaction-modal-body > div,
+.pay-transaction-modal-body > div{
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+.cash-transaction-modal-body > div > div,
+.pay-transaction-modal-body > div > div{
+	width: 50%;
+}
+
+#cancelQtyBtn{
+	float: left;
+	margin: 0 !important;
+}
+
+#orderBtn{
+	float: right;
+}
+
+.qty-modal-body > .product-details-container{
+	margin-top: 15px;
+	margin-bottom: 20px;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+.qty-modal-body > .product-details-container > h4{
+	color: #337ab7;
+	font-weight: bold;
+}
+
+.qty-modal-body > .product-details-container > div,
+.qty-modal-body > .product-details-container > div > div{
+	padding: 0;
+}
+
+.qty-modal-body > .product-details-container > div{
+	margin-top: 20px;
+}
+
+.qty-modal-body > .product-details-container > div > div{
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+.qty-modal-body > .product-details-container > div > div > .product-details-label,
+.qty-container > span{
+	color: #337ab7;
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.qty-modal-body > .product-details-container > div > div > .product-details{
+	font-size: 16px;
+	margin-top: 7px;
+}
+
+.total-container{
+	margin-top: 15px;
+	padding-right: 5px;
+	text-align: right;
+}
+
+.total-label,
+.total{
+	font-weight: bold;
+	font-size: 20px;
+}
+
+#orderTotal{
+	margin-left: 20px;
+}
+
+#currentTransactionTable > tbody > tr:active,
+#inventoryTable > tbody > tr:active,
+#historyTable > tbody > tr:active,
+#existingTable > tbody > tr:active{
+	background-color: #EEEEEE;
+	cursor: pointer;
+}
+
+#confirmExistingModalBody{
+	padding: 30px 20px 30px 20px;
+}
+
+#confirmExistingModalBody > p{
+	font-size: 18px;
+}
+
+#currentTransactionTable > tbody > tr > td,
+#inventoryTable > tbody > tr > td,
+#historyTable > tbody > tr > td,
+#existingTable > tbody > tr > td{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.delete-from-cart{
+	font-size: 20px;
+	color: #d9534f;
+}
+
+.delete-item-name{
+	font-weight: bold;
+}
+
+
+/* INVENTORY */
+
+.inventory-icon-container{
+	height: 70px;
+	padding: 10px 20px 10px 20px;;
+}
+
+.inventory-icon-container > .icons-left{
+	float: left;
+	height: 100%;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+.inventory-icon-container > .icons-right{
+	float: right;
+	height: 100%;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+.inventory-search-icon{
+	color: #337ab7;
+	font-size: 37px !important;
+	padding-top: 1px;
+	padding-right: 20px;
+}
+
+.inventory-refresh-icon{
+	color: #337ab7;
+	font-size: 37px !important;
+	padding-top: 1px;
+}
+
+.inventory-add-icon{
+	color: #337ab7;
+	font-size: 42px !important;
+	padding-right: 20px;
+}
+
+.tab-content{
+	height: calc(100% - 60px);
+}
+
+.tab-pane{
+	height: 100%;
+}
+
+.inventory-table-container{
+	height: calc(100% - 80px);
+	margin-top: 10px;
+	float: left;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding: 0px 20px 20px 20px;
+}
+
+.order-slip{
+	height: 50%;
+	float: left;
+	border: 2px solid #ddd; 
+	padding: 10px 20px 10px 20px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.order-slip-header{
+	position: relative;
+	height: 50px;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: left;
+	justify-content: left;
+	padding: 0px;
+	margin-bottom: 10px;
+}
+
+.current-stock-container{
+	width: 100%;
+	font-size: 18px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+.adjust-item-container{
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: left;
+}
+
+.adjust-item-container > .form-control{
+	text-align: right;
+}
+
+.adjust-item-container > i{
+	color: #337ab7;
+	font-size: 28px;
+}
+
+.order-slip-header > h4{
+	float: left;
+}
+
+.order-btn-container{
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.order-list-container{
+	height: 100vh;
+	width: 100%;
+	padding: 0;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.history-container{
+	height: calc(100% - 80px);
+	border: 1px solid #FFFFFF;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding: 20px;
+}
+
+.glyphicon-ok{
+	color: #5cb85c;
+}
+
+.transaction-modal-info{
+	width: 100%;
+	height: 50px;
+}
+
+.transaction-modal-info > div{
+	height: 100%;
+	width: 50%;
+	float: left;
+}
+
+.transaction-modal-info-left{
+	text-align: left;
+	font-size: 20px;
+}
+
+.transaction-modal-info-right{
+	text-align: right;
+	font-size: 16px;
+}
+
+#transactionInfoOkay{
+	border-radius: 0 !important;
+	height: 45px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+#transactionInfoPay,
+#transactionInfoDelete,
+#transactionInfoClose{
+	border-radius: 0 !important;
+	height: 45px;
+	width: 120px;
+}
+
+#transactionInfoPay,
+#transactionInfoDelete{
+	margin-right: 5px;
+}
+
+.transaction-info-btn-container{
+	width: 100%;
+	text-align: right;
+}
+
+#transactionInfoBody{
+	max-height: calc(100vh - 100px);
+	overflow-y: scroll;
+	overflow-x: hidden;
+}

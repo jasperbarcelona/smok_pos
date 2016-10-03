@@ -1,0 +1,285 @@
+<div class="modal fade" id="qtyModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog qty-modal-dialog">
+                <div class="modal-content">
+                        <div class="qty-modal-header modal-header">
+                                Product Sample 1
+                        </div>
+                        <div class="qty-modal-body modal-body">
+                                <div class="qty-container">
+                                        <span>Quantity</span>
+                                        <div>
+                                                <span id="qtyMinus" class="qty-operation">-</span>
+                                                <input type="text" id="quantity" class="form-control" />
+                                                <span id="qtyPlus" class="qty-operation">+</span>
+                                        </div>
+                                </div>
+                                <div class="product-details-container">
+                                        <!-- <h4>Product Sample 1</h4> -->
+                                        <div class="col-xs-12">
+                                                <div class="product-price-container col-xs-6">
+                                                        <span class="product-details-label">Price</span>
+                                                        <span id="qtyPrice" class="product-details">Php 20.00</span>
+                                                </div>
+                                                <div class="product-stock-container col-xs-6">
+                                                        <span class="product-details-label">Stock</span>
+                                                        <span id="qtyStock" class="product-details">12</span>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>  
+                        <div class="qty-modal-footer modal-footer">
+                                <button type="button" data-dismiss="modal" id="cancelQtyBtn" class="btn btn-danger">Cancel</button>
+                                <button type="button" id="orderBtn" class="btn btn-primary" onclick="add_product()">Done</button>
+                        </div>
+                </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+</div>
+
+
+<div class="modal fade" id="deleteOrderModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog delete-order-modal-dialog">
+                <div class="modal-content">
+                        <div class="delete-order-modal-header modal-header">
+                                Remove
+                        </div>
+                        <div class="delete-order-modal-body modal-body">
+                                <p>Are you sure you want to remove <span class="delete-item-name"></span> from your order list?</p>
+                        </div>  
+                        <div class="delete-order-modal-footer modal-footer">
+                                <button type="button" data-dismiss="modal" id="cancelQtyBtn" class="btn btn-danger">Cancel</button>
+                                <button type="button" id="orderBtn" class="btn btn-primary" onclick="delete_from_order()">Remove</button>
+                        </div>
+                </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="adjustmentModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog delete-order-modal-dialog">
+                <div class="modal-content">
+                        <div class="delete-order-modal-header modal-header">
+                            <span id="adjustItemName"></span>
+                        </div>
+                        <div class="delete-order-modal-body modal-body">
+                            <div class="current-stock-container">
+                                <span class="current-stock-label">Current Stock: </span>
+                                <span id="currentStock">43</span>
+                            </div>
+                            <div class="adjust-item-container">
+                                <i class="material-icons add-item-icon col-xs-4">&#xE145;</i>
+                                <input id="addText" type="text" placeholder="0" class="form-control col-xs-8">
+                            </div>
+                            <br/>
+                            <div class="adjust-item-container">
+                                <i class="material-icons subtract-item-icon col-xs-4">&#xE15B;</i>
+                                <input id="subtractText" type="text" placeholder="0" class="form-control col-xs-8">
+                            </div>
+                        </div>  
+                        <div class="delete-order-modal-footer modal-footer">
+                                <button type="button" data-dismiss="modal" id="cancelQtyBtn" class="btn btn-danger">Cancel</button>
+                                <button type="button" id="orderBtn" class="btn btn-primary" onclick="adjust_stock()">Done</button>
+                        </div>
+                </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="deleteFromTransactionModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog delete-order-modal-dialog">
+                <div class="modal-content">
+                        <div class="delete-order-modal-header modal-header">
+                                Remove
+                        </div>
+                        <div class="delete-order-modal-body modal-body">
+                                <p>Are you sure you want to remove <span class="delete-transaction-item-name"></span> from your order list?</p>
+                        </div>  
+                        <div class="delete-order-modal-footer modal-footer">
+                                <button type="button" data-dismiss="modal" id="cancelQtyBtn" class="btn btn-danger">Cancel</button>
+                                <button type="button" id="orderBtn" class="btn btn-primary" onclick="delete_from_transaction()">Remove</button>
+                        </div>
+                </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="cancelTransactionModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog cancel-transaction-modal-dialog">
+                <div class="modal-content">
+                        <div class="cancel-transaction-modal-header modal-header">
+                                Cancel Transaction
+                        </div>
+                        <div class="cancel-transaction-modal-body modal-body">
+                                <p>Are you sure you want to cancel this transaction?</p>
+                        </div>  
+                        <div class="cancel-transaction-modal-footer modal-footer">
+                                <button type="button" data-dismiss="modal" id="cancelQtyBtn" class="btn btn-danger">No</button>
+                                <button type="button" id="orderBtn" class="btn btn-primary" onclick="cancel_transaction()">Yes</button>
+                        </div>
+                </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="paymentSelectionModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog payment-selection-modal-dialog">
+                <div class="modal-content">
+                        <div class="payment-selection-modal-header modal-header">
+                                Payment Method
+                        </div>
+                        <div class="payment-selection-modal-body modal-body">
+                                <input id="customerName" type="text" class="form-control" placeholder="Customer Name" />
+                                <br  />
+                                <br  />
+                                <h4>Please select mode of payment.</h4>
+                                <div class="payment-selection-container">
+                                    <div class="payment-selection-cover"></div>
+                                    <div id="cashPayment" class="payment-method" onclick="get_amount_tendered()">
+                                            <span>Cash</span>
+                                    </div>
+                                    <div id="ewalletPayment" class="payment-method" onclick="pay_later()">
+                                            <span>Pay Later</span>
+                                    </div>
+                                </div>
+                                <div id="addToExisting" class="extra-payment-method">
+                                        <span>Add to Existing Transaction</span>
+                                </div>
+                        </div>  
+                </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="transactionInfoModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog">
+                <div class="modal-content">
+                    <div class="cash-transaction-modal-header modal-header">
+                        Transaction Info
+                    </div>  
+                    <div id="transactionInfoBody" class="modal-body">
+                    </div>
+                </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="addToExistingModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog">
+                <div class="modal-content">
+                    <div class="cash-transaction-modal-header modal-header">
+                        Transactions
+                    </div>  
+                    <div id="addToExistingModalBody" class="modal-body">
+                    </div>
+                </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="addToExistingConfirm" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog">
+                <div class="modal-content">
+                    <div class="cash-transaction-modal-header modal-header">
+                        Confirm
+                    </div>  
+                    <div id="confirmExistingModalBody" class="modal-body">
+                        <p>
+                            Are you sure you want to add item/s to <strong id="confirmExistingName"></strong>'s order?
+                            <br/>
+                            <br/>
+                            <strong id="confirmExistingTotal"></strong> will be added to this transaction.
+                        </p>
+                    </div>
+                    <div class="cash-transaction-modal-footer modal-footer">
+                            <button type="button" data-dismiss="modal" id="cancelQtyBtn" class="btn btn-danger">Cancel</button>
+                            <button type="button" id="existingDoneBtn" class="btn btn-primary" onclick="add_orders_to_existing()">Confirm</button>
+                    </div>
+                </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="cashTransactionModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog cash-transaction-modal-dialog">
+                <div class="modal-content">
+                        <div class="cash-transaction-modal-header modal-header">
+                                Cash Transaction
+                        </div>
+                        <div class="cash-transaction-modal-body modal-body">
+                                <strong>Amount Due:</strong>
+                                <span>Php </span><span id="cashTotal"></span><br /><br />
+                                <strong>Change Due:</strong>
+                                <span class="changePhp">Php </span><span id="changeDue">0</span><br /><br /><br />
+                                <div>
+                                    <div>
+                                    <label for="amountTendered">Amount Tendered:</label>
+                                    </div>
+                                    <div>
+                                    <input type="text" id="amountTendered" class="form-control" placeholder="0">
+                                    </div>
+                                </div>
+                        </div>  
+                        <div class="cash-transaction-modal-footer modal-footer">
+                                <button type="button" data-dismiss="modal" id="cancelQtyBtn" class="btn btn-danger">Cancel</button>
+                                <button type="button" id="tenderedDoneBtn" class="btn btn-primary" onclick="finish_cash_transaction()" disabled>Done</button>
+                        </div>
+                </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+</div>
+
+
+<div class="modal fade" id="payTransactionModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog pay-transaction-modal-dialog">
+                <div class="modal-content">
+                        <div class="pay-transaction-modal-header modal-header">
+                                Cash Transaction
+                        </div>
+                        <div class="pay-transaction-modal-body modal-body">
+                                <strong>Amount Due:</strong>
+                                <span>Php </span><span id="payTotal"></span><br /><br />
+                                <strong>Change Due:</strong>
+                                <span class="changePhp">Php </span><span id="paychangeDue">0</span><br /><br /><br />
+                                <div>
+                                    <div>
+                                    <label for="payAmountTendered">Amount Tendered:</label>
+                                    </div>
+                                    <div>
+                                    <input type="text" id="payAmountTendered" class="form-control" placeholder="0">
+                                    </div>
+                                </div>
+                        </div>  
+                        <div class="pay-transaction-modal-footer modal-footer">
+                                <button type="button" data-dismiss="modal" id="cancelQtyBtn" class="btn btn-danger">Cancel</button>
+                                <button type="button" id="laterDoneBtn" class="btn btn-primary" onclick="finish_pay_transaction()" disabled>Done</button>
+                        </div>
+                </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+</div>
+
+
+<div class="modal fade" id="successModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog success-transaction-modal-dialog">
+                <div class="modal-content">
+                        <div class="success-transaction-modal-body modal-body">
+                                <h3>Transaction Successful!</h3>
+                        </div>  
+                        <div class="success-transaction-modal-footer modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Okay</button>
+                        </div>
+                </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="voidPasswordModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog">
+                <div class="modal-content">
+                    <div class="cash-transaction-modal-header modal-header">
+                        Void Transaction
+                    </div>  
+                        <div id="addToExistingModalBody" class="modal-body">
+                            <p>
+                                <h4>This transaction will be deleted permanently. Continue?</h4>
+                                <br/>
+                                <input type="password" class="form-control" id="voidPassword" placeholder="password"/>
+                                <br/>
+                            </p>
+                        </div>
+                        <div class="cash-transaction-modal-footer modal-footer">
+                                <button type="button" data-dismiss="modal" id="cancelQtyBtn" class="btn btn-danger">Cancel</button>
+                                <button type="button" id="voidDoneBtn" class="btn btn-primary" onclick="void_transaction_confirmed()">Continue</button>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+</div>

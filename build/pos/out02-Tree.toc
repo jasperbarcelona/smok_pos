@@ -1,0 +1,4 @@
+('/usr/local/lib/python2.7/dist-packages/greenlet-0.4.9-py2.7-linux-x86_64.egg',
+ None,
+ set(['*.py', '*.pyc', '*.pyd', '*.pyo', '*.so', 'EGG-INFO']),
+ [])

@@ -1,0 +1,135 @@
+<div class="search-container col-xs-12">
+	<div class="search-icon-container col-xs-1">
+		<i class="glyphicon glyphicon-search"></i>
+	</div>
+	<div class="search-box-container col-xs-11">
+		<input type="text" id="searchBox" class="form-control" placeholder="Search Items">
+	</div>
+</div>
+<div class="items-container">
+	<div class="item-group col-xs-12">
+		<h4 class="item-category-label">Rice Meals</h4>
+		{% for meal in rice_meals %}
+		<div class="col-xs-3">
+			<div class="item" id="{{meal.id}}" data-toggle="modal" data-target="#qtyModal" onclick="open_product_qty(this.id)">
+				<span class="item-name">{{meal.name}}</span>
+				<div>
+					<span class="item-price">Php {{meal.price}}</span>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+	<div class="item-group col-xs-12">
+		<h4 class="item-category-label">UNLI Rice Meals</h4>
+		{% for meal in unli_rice_meals %}
+		<div class="col-xs-3">
+			<div class="item" id="{{meal.id}}" data-toggle="modal" data-target="#qtyModal" onclick="open_product_qty(this.id)">
+				<span class="item-name">{{meal.name}}</span>
+				<div>
+					<span class="item-price">Php {{meal.price}}</span>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+	<div class="item-group col-xs-12">
+		<h4 class="item-category-label">On Stick</h4>
+		{% for meal in sausage_on_stick %}
+		<div class="col-xs-3">
+			<div class="item" id="{{meal.id}}" data-toggle="modal" data-target="#qtyModal" onclick="open_product_qty(this.id)">
+				<span class="item-name">{{meal.name}}</span>
+				<div>
+					<span class="item-price">Php {{meal.price}}</span>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+	<div class="item-group col-xs-12">
+		<h4 class="item-category-label">On Bun</h4>
+		{% for meal in sausage_on_bun %}
+		<div class="col-xs-3">
+			<div class="item" id="{{meal.id}}" data-toggle="modal" data-target="#qtyModal" onclick="open_product_qty(this.id)">
+				<span class="item-name">{{meal.name}}</span>
+				<div>
+					<span class="item-price">Php {{meal.price}}</span>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+	<div class="item-group col-xs-12">
+		<h4 class="item-category-label">ASIAN Meals</h4>
+		{% for meal in asian_meal %}
+		<div class="col-xs-3">
+			<div class="item" id="{{meal.id}}" data-toggle="modal" data-target="#qtyModal" onclick="open_product_qty(this.id)">
+				<span class="item-name">{{meal.name}}</span>
+				<div>
+					<span class="item-price">Php {{meal.price}}</span>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+	<div class="item-group col-xs-12">
+		<h4 class="item-category-label">COMBO Meals</h4>
+		{% for meal in combo_meal %}
+		<div class="col-xs-3">
+			<div class="item" id="{{meal.id}}" data-toggle="modal" data-target="#qtyModal" onclick="open_product_qty(this.id)">
+				<span class="item-name">{{meal.name}}</span>
+				<div>
+					<span class="item-price">Php {{meal.price}}</span>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+	<div class="item-group col-xs-12">
+		<h4 class="item-category-label">Addons</h4>
+		{% for addon in addons %}
+		<div class="col-xs-3">
+			<div class="item" id="{{addon.id}}" data-toggle="modal" data-target="#qtyModal" onclick="open_product_qty(this.id)">
+				<span class="item-name">{{addon.name}}</span>
+				<div>
+					<span class="item-price">Php {{addon.price}}</span>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+	<div class="item-group col-xs-12">
+		<h4 class="item-category-label">Drinks</h4>
+		{% for drink in drinks %}
+		<div class="col-xs-3">
+			<div class="item" id="{{drink.id}}" data-toggle="modal" data-target="#qtyModal" onclick="open_product_qty(this.id)">
+				<span class="item-name">{{drink.name}}</span>
+				<div>
+					<span class="item-price">Php {{drink.price}}</span>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+	<div class="item-group col-xs-12">
+		<h4 class="item-category-label">Others</h4>
+		{% for item in others %}
+		<div class="col-xs-3">
+			<div class="item" id="{{item.id}}" data-toggle="modal" data-target="#qtyModal" onclick="open_product_qty(this.id)">
+				<span class="item-name">{{item.name}}</span>
+				<div>
+					<span class="item-price">Php {{item.price}}</span>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>

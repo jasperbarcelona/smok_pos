@@ -1,0 +1,16 @@
+Flask==0.10.1
+Flask-Admin==1.0.8
+Flask-Cors==1.10.3
+Flask-SQLAlchemy==1.0
+Jinja2==2.7.3
+python-dateutil==1.5
+MarkupSafe==0.23
+SQLAlchemy==0.9.6
+WTForms==2.0.1
+Werkzeug==0.9.6
+argparse==1.2.1
+requests==2.2.1
+itsdangerous==0.24
+wsgiref==0.1.2
+psycopg2
+Flask-OAuth==0.12
