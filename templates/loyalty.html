@@ -1,0 +1,32 @@
+<div class="search-container sales col-xs-12">
+	<div class="search-icon-container col-xs-1">
+		<i class="glyphicon glyphicon-search"></i>
+	</div>
+	<div class="search-box-container col-xs-11">
+		<input type="text" id="searchLoyalty" oninput="search_loyalty(this.value)" class="form-control search-box" placeholder="Search Cards">
+	</div>
+</div>
+<div class="loyalty-table-container col-xs-12">
+	<table class="table" id="inventoryTable">
+		<thead>
+			<tr>
+				<th class="align-left">Card No</th>
+				<th class="align-right">Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for card in loyalty %}
+			<tr id="{{card.id}}" data-toggle="modal" data-target="#loyaltyModal" onclick="show_points(this.id)">
+				<td class="align-left col-xs-4">{{card.card_no}}</td>
+				{% if card.status == 'Incomplete' %}
+				<td class="align-right col-xs-3 red">
+				{% else %}
+				<td class="align-right col-xs-3 green">
+				{% endif %}
+				<strong>{{card.status}}</strong>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>

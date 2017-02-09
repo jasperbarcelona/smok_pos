@@ -1,49 +1,40 @@
-<div class="inventory-icon-container col-xs-12">
-	<div class="icons-left">
-	</div>
-	<div class="icons-right">
-		<i class="material-icons inventory-search-icon">&#xE8B6;</i>
-		<i class="material-icons inventory-refresh-icon" onclick="update_history()">&#xE5D5;</i>
-	</div>
-</div>
-<div class="history-container">
-	<table id="historyTable" class="table">
-		<thead>
-			<tr>
-				<th class="align-right"></th>
-				<th class="align-left">Customer</th>
-				<th class="align-left">Date</th>
-				<th class="align-left">Time</th>
-				<th class="align-center">Status</th>
-				<th class="align-center">Paid</th>
-				<th class="align-right">Price</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for transaction in history %}
-			<tr id="{{transaction.id}}" data-toggle="modal" data-target="#transactionInfoModal" onclick="get_transaction_info(this.id)">
-				<td class="align-right">{{loop.index}}</td>
-				<td class="align-left">{{transaction.customer_name}}</td>
-				<td class="align-left">{{transaction.date}}</td>
-				<td class="align-left">{{transaction.time}}</td>
-				<td class="align-center">{{transaction.remarks}}</td>
-				{% if transaction.payed %}
-				<td class="align-center"><span class="glyphicon glyphicon-ok"></span></td>
-				{% else %}
-				<td class="align-center"></td>
-				{% endif %}
-				<td class="align-right">{{transaction.total}}</td>
-			</tr>
-			{% endfor %}
-			<tr>
-				<td class="align-right"></td>
-				<td class="align-left"></td>
-				<td class="align-left"></td>
-				<td class="align-left"></td>
-				<td class="align-left"></td>
-				<td class="align-center"><strong>Total Paid:</strong></td>
-				<td class="align-right"><strong>Php {{transaction_total}}</strong></td>
-			</tr>
-		</tbody>
-	</table>
-</div>
+
+<table id="historyTable" class="table">
+	<thead>
+		<tr>
+			<th class="align-right"></th>
+			<th class="align-left">Customer</th>
+			<th class="align-left">Date</th>
+			<th class="align-left">Time</th>
+			<th class="align-center">Status</th>
+			<th class="align-center">Paid</th>
+			<th class="align-right">Price</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for transaction in history %}
+		<tr id="{{transaction.id}}" data-toggle="modal" data-target="#transactionInfoModal" onclick="get_transaction_info(this.id)">
+			<td class="align-right">{{loop.index}}</td>
+			<td class="align-left">{{transaction.customer_name}}</td>
+			<td class="align-left">{{transaction.date}}</td>
+			<td class="align-left">{{transaction.time}}</td>
+			<td class="align-center">{{transaction.remarks}}</td>
+			{% if transaction.payed %}
+			<td class="align-center"><span class="glyphicon glyphicon-ok"></span></td>
+			{% else %}
+			<td class="align-center"></td>
+			{% endif %}
+			<td class="align-right">&#8369; {{transaction.total}}</td>
+		</tr>
+		{% endfor %}
+		<tr>
+			<td class="align-right"></td>
+			<td class="align-left"></td>
+			<td class="align-right"><strong>Total Paid:</strong></td>
+			<td class="align-right"><strong>&#8369; {{payed_total}}</strong></td>
+			<td class="align-left"></td>
+			<td class="align-right"><strong>Total Sales:</strong></td>
+			<td class="align-right"><strong>&#8369; {{transaction_total}}</strong></td>
+		</tr>
+	</tbody>
+</table>

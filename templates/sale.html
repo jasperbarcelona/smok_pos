@@ -1,0 +1,26 @@
+<table class="table" id="inventoryTable">
+	<thead>
+		<tr>
+			<th class="align-left">Product</th>
+			<th class="align-right">Markup</th>
+			<th class="align-right">Sale</th>
+			<th class="align-right">Revenue</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for sale in sales %}
+		<tr id="{{sale.id}}">
+			<td class="align-left col-xs-3">{{sale.item_name}}</td>
+			<td class="align-right col-xs-3">&#8369; {{sale.markup}}</td>
+			<td class="align-right col-xs-3">{{sale.qty}}</td>
+			<td class="align-right col-xs-3">&#8369; {{sale.total}}</td>
+		</tr>
+		{% endfor %}
+		<tr>
+			<td class="align-left col-xs-3"></td>
+			<td class="align-right col-xs-3"></td>
+			<td class="align-right col-xs-3"><strong>Total Revenue</strong></td>
+			<td class="align-right col-xs-3"><strong>&#8369; {{sales_total}}</strong></td>
+		</tr>
+	</tbody>
+</table>

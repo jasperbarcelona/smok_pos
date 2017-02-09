@@ -1,10 +1,17 @@
 <div class="inventory-icon-container col-xs-12">
 	<div class="icons-left">
-		<i class="material-icons inventory-add-icon">&#xE145;</i>
 	</div>
 	<div class="icons-right">
-		<i class="material-icons inventory-search-icon">&#xE8B6;</i>
+		<i class="material-icons inventory-add-icon">&#xE145;</i>
 		<i class="material-icons inventory-refresh-icon">&#xE5D5;</i>
+	</div>
+</div>
+<div class="search-container sales col-xs-12">
+	<div class="search-icon-container col-xs-1">
+		<i class="glyphicon glyphicon-search"></i>
+	</div>
+	<div class="search-box-container col-xs-11">
+		<input type="text" id="searchInventory" oninput="search_inventory(this.value)" class="form-control search-box" placeholder="Search Items">
 	</div>
 </div>
 <div class="inventory-table-container col-xs-12">

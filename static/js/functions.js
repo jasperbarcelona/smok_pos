@@ -1,3 +1,56 @@
+function search_items(keyword){
+  $.post('/item/search',{
+    keyword:keyword
+  },
+  function(data){
+    if (!keyword == ''){
+      $('.items-container').html(data)
+    }
+    else{
+      $('#itemTab').html(data)
+    }
+    var item = $('.item');
+    item.css('height',item.width() - 10);
+  });
+}
+
+function use_loyalty(){
+  var card_no = $('#loyaltyCardNo').val()
+  $.post('/loyalty/use',{
+    card_no:card_no
+  },
+  function(data){
+    $('#useLoyaltyModal').modal('hide');
+  });
+}
+
+function search_inventory(keyword){
+  $.post('/inventory/search',{
+    keyword:keyword
+  },
+  function(data){
+    $('.inventory-table-container').find('table').find('tbody').html(data)
+  });
+}
+
+function search_history(date){
+  $.post('/history/search',{
+    date:date
+  },
+  function(data){
+    $('.history-container').html(data);
+  });
+}
+
+function search_sale(date){
+  $.post('/sale/search',{
+    date:date
+  },
+  function(data){
+    $('.sales-table-container').html(data);
+  });
+}
+
 function open_product_qty(id){
   $.post('/item/qty/get',{
       product_id:id
@@ -41,6 +94,7 @@ function test_func(qty,options_id,options_name){
     $('#qtyModal').modal('hide');
     $('.transaction-panel-body').html(data['transaction_template']);
     $('#inventoryTab').html(data['inventory_template']);
+    $('.sales-table-container').html(data['sales_template']);
     $('#currentTransactionPanel').find('.panel-footer').find('button').attr('disabled',false);
   });
 }
@@ -71,6 +125,8 @@ function delete_from_transaction(id){
   },
   function(data){
     $('#inventoryTab').html(data['inventory_template']);
+    $('.sales-table-container').html(data['sales_template']);
+    $('.history-container').html(data['history_template']);
     $('#transactionInfoBody').html(data['transaction_info_template']);
     $('#transactionInfoModal').modal('show');
   });
@@ -86,6 +142,7 @@ function delete_from_order(){
     $('#deleteOrderModal').modal('hide');
     $('.transaction-panel-body').html(data['transaction_template']);
     $('#inventoryTab').html(data['inventory_template']);
+    $('.sales-table-container').html(data['sales_template']);
   });
 }
 
@@ -115,6 +172,23 @@ function get_amount_tendered(){
   });
 }
 
+function delivery_amount_tendered(){
+  var customer_name = $('#customerName').val()
+  $.post('/transaction/cash/amount',{
+    customer_name:customer_name
+  },
+  function(data){
+    $('#deliveryCashTotal').html(data['total']);
+    $('#paymentSelectionModal').modal('hide');
+    $('#deliveryModal').modal('show');
+    $('#deliveryAmountTendered').val('');
+    $('#deliveryAmountTendered').change();
+    setTimeout(function() {
+      $('#deliveryAmountTendered').focus();
+    }, 500);
+  });
+}
+
 function compute_change(){
   var due = $('#cashTotal').html();
   var tendered = $('#amountTendered').val();
@@ -135,6 +209,28 @@ function compute_change(){
     $('#tenderedDoneBtn').attr('disabled',true);
   }
   $('#changeDue').html(change);
+}
+
+function compute_delivery_change(){
+  var due = $('#deliveryCashTotal').html();
+  var tendered = $('#deliveryAmountTendered').val();
+  if (tendered == ''){
+    var change = 0
+  }
+  else{
+    var change = parseFloat(tendered) - parseFloat(due);
+  }
+  if (parseFloat(tendered) >= parseFloat(due)){
+    $('#deliveryChangeDue').css('color','green');
+    $('.changePhp').css('color','green');
+    $('#deliveryTenderedDoneBtn').attr('disabled',false);
+  }
+  else{
+    $('#deliveryChangeDue').css('color','red');
+    $('.changePhp').css('color','red');
+    $('#deliveryTenderedDoneBtn').attr('disabled',true);
+  }
+  $('#deliveryChangeDue').html(change);
 }
 
 function compute_pay_change(){
@@ -169,7 +265,7 @@ function pay_later(){
       $('#paymentSelectionModal').modal('hide');
       $('#successModal').modal('show');
       $('.transaction-panel-body').html(data['transaction_template']);
-      $('#historyTab').html(data['history_template']);
+      $('.history-container').html(data['history_template']);
       $('#finishTransactionBtn').attr('disabled',true);
       $('#cancelTransactionBtn').attr('disabled',true);
     }
@@ -186,7 +282,7 @@ function finish_cash_transaction(){
       $('#cashTransactionModal').modal('hide');
       $('#successModal').modal('show');
       $('.transaction-panel-body').html(data['transaction_template']);
-      $('#historyTab').html(data['history_template']);
+      $('.history-container').html(data['history_template']);
       $('#finishTransactionBtn').attr('disabled',true);
       $('#cancelTransactionBtn').attr('disabled',true);
     }
@@ -202,6 +298,16 @@ function show_existing_transactions(){
   });
 }
 
+function show_points(id){
+  $.post('/loyalty/points',{
+    id:id
+  },
+  function(data){
+    $('#loyaltyModalBody').html(data['template']);
+    $('#loyaltyModalHeader').html('Card No: ' + data['card_no']);
+  });
+}
+
 function finish_pay_transaction(id){
   var tendered = $('#payAmountTendered').val();
   $.post('/transaction/finish/later/pay',{
@@ -212,7 +318,7 @@ function finish_pay_transaction(id){
       $('#payTransactionModal').modal('hide');
       $('#transactionInfoModal').modal('hide');
       $('#successModal').modal('show');
-      $('#historyTab').html(data['history_template']);
+      $('.history-container').html(data['history_template']);
     }
   });
 }
@@ -264,7 +370,7 @@ function save_transaction_id(id){
   },
   function(data){
     $('#confirmExistingName').html(data['customer_name']);
-    $('#confirmExistingTotal').html('Php ' + data['total']);
+    $('#confirmExistingTotal').html('&#8369; ' + data['total']);
     $('#addToExistingModal').modal('hide');
     $('#addToExistingConfirm').modal('show');
   });
@@ -274,10 +380,9 @@ function add_orders_to_existing(){
   $.post('/transaction/existing/add',
   function(data){
     $('#addToExistingConfirm').modal('hide');
-    $('#historyTab').html(data);
     $('#successModal').modal('show');
     $('.transaction-panel-body').html(data['transaction_template']);
-    $('#historyTab').html(data['history_template']);
+    $('.history-container').html(data['history_template']);
     $('#finishTransactionBtn').attr('disabled',true);
     $('#cancelTransactionBtn').attr('disabled',true);
   });
@@ -286,7 +391,7 @@ function add_orders_to_existing(){
 function update_history(){
   $.post('/transaction/history/get',
   function(data){
-    $('#historyTab').html(data['history_template']);
+    $('.history-container').html(data['history_template']);
   });
 }
 
@@ -301,8 +406,9 @@ function void_transaction(id){
 function void_transaction_confirmed(){
   $.post('/transaction/void/confirm',
   function(data){
-    $('#historyTab').html(data['history_template']);
+    $('.history-container').html(data['history_template']);
     $('#voidPasswordModal').modal('hide');
+    $('.sales-table-container').html(data['sales_template']);
     $('#transactionInfoModal').modal('hide');
   });
 }
@@ -338,4 +444,44 @@ function adjust_stock(){
       $('#subtractText').val('');
     }
   });
+}
+
+function get_delivery_data(){
+  $.post('/delivery/data/get',
+  function(data){
+    $('.delivery-data-body').html(data);
+    $('.delivery-loading-container').hide();
+  });
+}
+
+function confirm_delivery(transaction_id){
+  var transaction_name = $('#activeOrdersTable').find('tbody').find('#'+transaction_id).find('.delivery-name').html();
+  $.post('/delivery/transaction/save',{
+    transaction_id:transaction_id,
+    transaction_name:transaction_name
+  },  
+  function(data){
+    $('#confirmDeliveryName').html(data['customer_name']);
+    $('#confirmDeliveryModal').modal('show');
+  });
+}
+
+function add_orders_to_delivery(){
+  $('#confirmDeliveryBtn').attr('disabled',true);
+  $('#confirmDeliveryLoading').show();
+  var tendered = $('#deliveryAmountTendered').val();
+  $.post('/delivery/add',{
+    tendered:tendered
+  },
+  function(data){
+    if (data['status'] == 'failed'){
+      $('#confirmDeliveryModalBody').html(data['error']);
+      $('#confirmDeliveryLoading').hide();
+      $('#confirmDeliveryBtn').attr('disabled',false);
+    }
+    else{
+      $('#confirmDeliveryLoading').hide();
+      $('.modal').modal('hide');
+    }
+  })
 }

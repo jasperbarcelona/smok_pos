@@ -1,38 +1,38 @@
 <div class="modal fade" id="qtyModal" role="dialog" aria-hidden="true">
-        <div class="modal-dialog qty-modal-dialog">
-                <div class="modal-content">
-                        <div class="qty-modal-header modal-header">
-                                Product Sample 1
+    <div class="modal-dialog qty-modal-dialog">
+        <div class="modal-content">
+            <div class="qty-modal-header modal-header">
+                    Product Sample 1
+            </div>
+            <div class="qty-modal-body modal-body">
+                <div class="qty-container">
+                    <span>Quantity</span>
+                    <div>
+                        <span id="qtyMinus" class="qty-operation">-</span>
+                        <input type="text" id="quantity" class="form-control" />
+                        <span id="qtyPlus" class="qty-operation">+</span>
+                    </div>
+                </div>
+                <div class="product-details-container">
+                        <!-- <h4>Product Sample 1</h4> -->
+                        <div class="col-xs-12">
+                            <div class="product-price-container col-xs-6">
+                                <span class="product-details-label">Price</span>
+                                <span id="qtyPrice" class="product-details">&#8369; 20.00</span>
+                            </div>
+                            <div class="product-stock-container col-xs-6">
+                                <span class="product-details-label">Stock</span>
+                                <span id="qtyStock" class="product-details">12</span>
+                            </div>
                         </div>
-                        <div class="qty-modal-body modal-body">
-                                <div class="qty-container">
-                                        <span>Quantity</span>
-                                        <div>
-                                                <span id="qtyMinus" class="qty-operation">-</span>
-                                                <input type="text" id="quantity" class="form-control" />
-                                                <span id="qtyPlus" class="qty-operation">+</span>
-                                        </div>
-                                </div>
-                                <div class="product-details-container">
-                                        <!-- <h4>Product Sample 1</h4> -->
-                                        <div class="col-xs-12">
-                                                <div class="product-price-container col-xs-6">
-                                                        <span class="product-details-label">Price</span>
-                                                        <span id="qtyPrice" class="product-details">Php 20.00</span>
-                                                </div>
-                                                <div class="product-stock-container col-xs-6">
-                                                        <span class="product-details-label">Stock</span>
-                                                        <span id="qtyStock" class="product-details">12</span>
-                                                </div>
-                                        </div>
-                                </div>
-                        </div>  
-                        <div class="qty-modal-footer modal-footer">
-                                <button type="button" data-dismiss="modal" id="cancelQtyBtn" class="btn btn-danger">Cancel</button>
-                                <button type="button" id="orderBtn" class="btn btn-primary" onclick="add_product()">Done</button>
-                        </div>
-                </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
+                </div>
+            </div>  
+            <div class="qty-modal-footer modal-footer">
+                    <button type="button" data-dismiss="modal" id="cancelQtyBtn" class="btn btn-danger">Cancel</button>
+                    <button type="button" id="orderBtn" class="btn btn-primary" onclick="add_product()">Done</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 </div>
 
 
@@ -136,6 +136,12 @@
                                             <span>Pay Later</span>
                                     </div>
                                 </div>
+                                <div id="payWithCard" class="extra-payment-method" data-toggle="modal" data-target="#cardPaymentModal">
+                                        <span>Pay with Loyalty Card</span>
+                                </div>
+                                <div id="addDeliveryBtn" class="extra-payment-method" onclick="delivery_amount_tendered()">
+                                    <span>Add to Delivery</span>
+                                </div>
                                 <div id="addToExisting" class="extra-payment-method">
                                         <span>Add to Existing Transaction</span>
                                 </div>
@@ -168,6 +174,17 @@
         </div><!-- /.modal-dialog -->
 </div>
 
+<div class="modal fade" id="loyaltyModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog">
+                <div class="modal-content">
+                    <div id="loyaltyModalHeader" class="cash-transaction-modal-header modal-header">
+                    </div>  
+                    <div id="loyaltyModalBody" class="modal-body">
+                    </div>
+                </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+</div>
+
 <div class="modal fade" id="addToExistingConfirm" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog">
                 <div class="modal-content">
@@ -184,7 +201,29 @@
                     </div>
                     <div class="cash-transaction-modal-footer modal-footer">
                             <button type="button" data-dismiss="modal" id="cancelQtyBtn" class="btn btn-danger">Cancel</button>
-                            <button type="button" id="existingDoneBtn" class="btn btn-primary" onclick="add_orders_to_existing()">Confirm</button>
+                            <button type="button" id="existingDoneBtn" class="btn btn-primary" onclick="add_orders_to_existing()">Yes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="confirmDeliveryModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog">
+                <div class="modal-content">
+                    <div class="cash-transaction-modal-header modal-header">
+                        Confirm Delivery
+                    </div>
+                    <div id="confirmDeliveryLoading">
+                        Loading...
+                    </div>
+                    <div id="confirmDeliveryModalBody" class="modal-body">
+                        <p>
+                            Are you sure you want to add item/s to <strong id="confirmDeliveryName"></strong>'s order?
+                        </p>
+                    </div>
+                    <div class="cash-transaction-modal-footer modal-footer">
+                            <button type="button" data-dismiss="modal" id="cancelQtyBtn" class="btn btn-danger">Cancel</button>
+                            <button type="button" id="confirmDeliveryBtn" class="btn btn-primary" onclick="add_orders_to_delivery()">Yes</button>
                     </div>
                 </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -198,9 +237,9 @@
                         </div>
                         <div class="cash-transaction-modal-body modal-body">
                                 <strong>Amount Due:</strong>
-                                <span>Php </span><span id="cashTotal"></span><br /><br />
+                                <span>&#8369; </span><span id="cashTotal"></span><br /><br />
                                 <strong>Change Due:</strong>
-                                <span class="changePhp">Php </span><span id="changeDue">0</span><br /><br /><br />
+                                <span class="changePhp">&#8369; </span><span id="changeDue">0</span><br /><br /><br />
                                 <div>
                                     <div>
                                     <label for="amountTendered">Amount Tendered:</label>
@@ -219,6 +258,51 @@
 </div>
 
 
+<div class="modal fade" id="deliveryModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog cash-transaction-modal-dialog">
+                <div class="modal-content">
+                        <div class="cash-transaction-modal-header modal-header">
+                                Delivery
+                        </div>
+                        <div class="cash-transaction-modal-body modal-body">
+                                <strong>Amount Due:</strong>
+                                <span>&#8369; </span><span id="deliveryCashTotal"></span><br /><br />
+                                <strong>Change Due:</strong>
+                                <span class="changePhp">&#8369; </span><span id="deliveryChangeDue">0</span><br /><br /><br />
+                                <div>
+                                    <div>
+                                    <label for="deliveryAmountTendered">Amount Tendered:</label>
+                                    </div>
+                                    <div>
+                                    <input type="text" id="deliveryAmountTendered" class="form-control" placeholder="0">
+                                    </div>
+                                </div>
+                        </div>  
+                        <div class="cash-transaction-modal-footer modal-footer">
+                                <button type="button" data-dismiss="modal" id="cancelQtyBtn" class="btn btn-danger">Cancel</button>
+                                <button type="button" id="deliveryTenderedDoneBtn" class="btn btn-primary" data-toggle="modal" data-target="#deliveryData" onclick="get_delivery_data()" disabled>Done</button>
+                        </div>
+                </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+</div>
+
+
+<div class="modal fade" id="deliveryData" role="dialog" aria-hidden="true">
+        <div class="modal-dialog delivery-modal-dialog">
+                <div class="modal-content">
+                        <div class="cash-transaction-modal-header modal-header">
+                                Delivery
+                        </div>
+                        <div class="delivery-data-body modal-body">
+                        </div> 
+                        <div class="delivery-loading-container">
+                            <span>Connecting to server...</span>
+                        </div> 
+                </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+</div>
+
+
 <div class="modal fade" id="payTransactionModal" role="dialog" aria-hidden="true">
         <div class="modal-dialog pay-transaction-modal-dialog">
                 <div class="modal-content">
@@ -227,9 +311,9 @@
                         </div>
                         <div class="pay-transaction-modal-body modal-body">
                                 <strong>Amount Due:</strong>
-                                <span>Php </span><span id="payTotal"></span><br /><br />
+                                <span>&#8369; </span><span id="payTotal"></span><br /><br />
                                 <strong>Change Due:</strong>
-                                <span class="changePhp">Php </span><span id="paychangeDue">0</span><br /><br /><br />
+                                <span class="changePhp">&#8369; </span><span id="paychangeDue">0</span><br /><br /><br />
                                 <div>
                                     <div>
                                     <label for="payAmountTendered">Amount Tendered:</label>
@@ -278,6 +362,52 @@
                         <div class="cash-transaction-modal-footer modal-footer">
                                 <button type="button" data-dismiss="modal" id="cancelQtyBtn" class="btn btn-danger">Cancel</button>
                                 <button type="button" id="voidDoneBtn" class="btn btn-primary" onclick="void_transaction_confirmed()">Continue</button>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="useLoyaltyModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog">
+                <div class="modal-content">
+                    <div class="cash-transaction-modal-header modal-header">
+                        Loyalty
+                    </div>  
+                        <div id="addToExistingModalBody" class="modal-body">
+                            <p>
+                                <h4>Please tap loyalty card.</h4>
+                                <br/>
+                                <input type="password" class="form-control" id="loyaltyCardNo" placeholder="Card No"/>
+                                <br/>
+                            </p>
+                        </div>
+                        <div class="cash-transaction-modal-footer modal-footer">
+                                <button type="button" data-dismiss="modal" id="cancelQtyBtn" class="btn btn-danger">Cancel</button>
+                                <button type="button" id="useLoyaltyDoneBtn" class="btn btn-primary" onclick="use_loyalty()">Continue</button>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="cardPaymentModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog">
+                <div class="modal-content">
+                    <div class="cash-transaction-modal-header modal-header">
+                        Loyalty Card Payment
+                    </div>  
+                        <div id="addToExistingModalBody" class="modal-body">
+                            <p>
+                                <h4>Please tap loyalty card.</h4>
+                                <br/>
+                                <input type="password" class="form-control" id="cardPaymentInput" placeholder="Card No"/>
+                                <br/>
+                            </p>
+                        </div>
+                        <div class="cash-transaction-modal-footer modal-footer">
+                                <button type="button" data-dismiss="modal" id="cancelQtyBtn" class="btn btn-danger">Cancel</button>
+                                <button type="button" id="useLoyaltyDoneBtn" class="btn btn-primary" onclick="use_loyalty()">Continue</button>
                         </div>
                     </div>
                 </div><!-- /.modal-content -->

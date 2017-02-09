@@ -1,0 +1,20 @@
+<table id="activeOrdersTable" class="table">
+	<thead>
+		<tr>
+			<th>Customer</th>
+			<th>Mobile</th>
+			<th>Call Time</th>
+			<th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for transaction in transactions %}
+		<tr class="delivery-tr" id="{{transaction.id}}" onclick="confirm_delivery(this.id)">
+			<td class="delivery-name">{{transaction.customer_name}}</td>
+			<td>{{transaction.customer_contact}}</td>
+			<td>{{transaction.call_time}}</td>
+			<td>{{transaction.status}}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>

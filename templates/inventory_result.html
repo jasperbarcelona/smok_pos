@@ -1,0 +1,6 @@
+{% for item in inventory %}
+<tr id="{{item.id}}" data-toggle="modal" data-target="#adjustmentModal" onclick="get_item_to_adjust(this.id)">
+	<td class="align-left col-xs-4">{{item.name}}</td>
+	<td class="align-right col-xs-3">{{item.stock}}</td>
+</tr>
+{% endfor %}

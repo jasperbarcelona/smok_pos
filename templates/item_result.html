@@ -1,0 +1,13 @@
+<div class="item-group col-xs-12">
+	<h4 class="item-category-label">Search Results</h4>
+	{% for item in products %}
+	<div class="col-xs-3">
+		<div class="item" id="{{item.id}}" data-toggle="modal" data-target="#qtyModal" onclick="open_product_qty(this.id)">
+			<span class="item-name">{{item.name}}</span>
+			<div>
+				<span class="item-price">Php {{item.price}}</span>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>

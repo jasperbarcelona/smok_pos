@@ -14,13 +14,13 @@
 			<td id="{{item.id}}" onclick="get_item_to_delete(this.id)" class="align-left col-xs-1" data-toggle="modal" data-target="#deleteOrderModal"><span class="glyphicon glyphicon-remove delete-from-cart"></span></td>
 			<td id="itemNameTd" class="align-left col-xs-6">{{item.name}}</td>
 			<td class="align-right col-xs-1">{{item.quantity}}</td>
-			<td class="align-right col-xs-4">Php {{item.price}}</td>
+			<td class="align-right col-xs-4">&#8369; {{item.price}}</td>
 		</tr>
 		{% endfor %}
 	</tbody>
 </table>
 <div class="total-container col-xs-12">
-	<span class="total-label">TOTAL:</span><span class="total" id="orderTotal">Php {{total}}</span>
+	<span class="total-label">TOTAL:</span><span class="total" id="orderTotal">&#8369; {{total}}</span>
 </div>
 {% else %}
 <div class="no-transaction">

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="../static/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="../static/css/bootstrap-datetimepicker.min.css">
+	<link rel="stylesheet" href="../static/css/bootstrap-responsive.css">
 	<link rel="stylesheet" href="../static/css/icon.css" >
 	<link rel="stylesheet" href="../static/css/style.css">
     <title>POS</title>
@@ -33,13 +35,13 @@
 								<td id="{{item.id}}" onclick="get_item_to_delete(this.id)" class="align-left col-xs-1" data-toggle="modal" data-target="#deleteOrderModal"><span class="glyphicon glyphicon-remove delete-from-cart"></span></td>
 								<td id="itemNameTd" class="align-left col-xs-5">{{item.name}}</td>
 								<td class="align-right col-xs-1">{{item.quantity}}</td>
-								<td class="align-right col-xs-5">Php {{item.price}}</td>
+								<td class="align-right col-xs-5">&#8369; {{item.price}}</td>
 							</tr>
 							{% endfor %}
 						</tbody>
 					</table>
 					<div class="total-container col-xs-12">
-						<span class="total-label">TOTAL:</span><span class="total" id="orderTotal">Php {{total}}</span>
+						<span class="total-label">TOTAL:</span><span class="total" id="orderTotal">&#8369; {{total}}</span>
 					</div>
 					{% else %}
 					<div class="no-transaction">
@@ -60,20 +62,23 @@
 		</div>
 		<div class="pos-right col-xs-7">
 			<ul class="nav nav-tabs col-xs-12">
-				<li class="first-tab active">
+				<li class="first-tab active col-xs-2">
 					<a href="#itemTab" class="tab-item" data-toggle="tab">Items</a>
 				</li>
-				<li>
+				<li class="col-xs-2">
 					<a href="#historyTab" class="tab-item" data-toggle="tab" onclick="update_history()">History</a>
 				</li>
-				<li>
+				<li class="col-xs-2">
 					<a href="#inventoryTab" class="tab-item" data-toggle="tab">Inventory</a>
 				</li>
-				<li>
-					<a href="#balanceTab" class="tab-item" data-toggle="tab">Balance</a>
+				<li class="col-xs-2">
+					<a href="#deliveryTab" class="tab-item" data-toggle="tab">Delivery</a>
 				</li>
-				<li>
-					<a href="#settingsTab" class="tab-item" data-toggle="tab">SETTINGS</a>
+				<li class="col-xs-2">
+					<a href="#salesTab" class="tab-item" data-toggle="tab">Sales</a>
+				</li>
+				<li class="col-xs-2">
+					<a href="#loyaltyTab" class="tab-item" data-toggle="tab">Loyalty</a>
 				</li>
 	        </ul>
 
@@ -82,25 +87,59 @@
 					{% include 'items.html' %}
 				</div>
 				<div class="tab-pane fade in" id="historyTab">
+					<div class="inventory-icon-container col-xs-12">
+						<div class="icons-left">
+							  <div id="historyPicker" class="datetimepicker1">
+							    <input id="searchHistory" readonly type="text" value="{{date}}">
+							    <span class="add-on">
+							    	<i class="material-icons">&#xE916;</i>
+							    </span>
+							  </div>
+						</div>
+						<div class="icons-right">
+							<i class="material-icons inventory-refresh-icon" onclick="update_history()">&#xE5D5;</i>
+						</div>
+					</div>
+					<div class="history-container">
 					{% include 'history.html' %}
+					</div>
 				</div>
 				<div class="tab-pane fade in" id="inventoryTab">
 					{% include 'inventory.html' %}
 				</div>
-				<div class="tab-pane fade in" id="balanceTab">
-					balanceTab
+				<div class="tab-pane fade in" id="deliveryTab">
+				delivery
 				</div>
-				<div class="tab-pane fade in" id="settingsTab">
-					settingsTab
+				<div class="tab-pane fade in" id="salesTab">
+					<div class="inventory-icon-container col-xs-12">
+						<div class="icons-left">
+							  <div id="salePicker" class="datetimepicker1">
+							    <input id="searchSale" readonly type="text" value="{{date}}">
+							    <span class="add-on">
+							    	<i class="material-icons">&#xE916;</i>
+							    </span>
+							  </div>
+						</div>
+						<div class="icons-right">
+							<i class="material-icons inventory-refresh-icon" onclick="update_history()">&#xE5D5;</i>
+						</div>
+					</div>
+					<div class="sales-table-container col-xs-12">
+					{% include 'sale.html' %}
+					</div>
+				</div>
+				<div class="tab-pane fade in" id="loyaltyTab">
+					{% include 'loyalty.html' %}
 				</div>
 			</div>
-		</div>
+		</div>`
 		{% include 'modals.html' %}
 	</div>
 
 	<script src="../static/js/jquery-1.11.0.min.js"></script>
-    <script src="../static/js/animations.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../static/js/animations.js"></script>
     <script src="../static/js/functions.js"></script>
 </body>
 </html>

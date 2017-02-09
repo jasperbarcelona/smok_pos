@@ -3,7 +3,7 @@
 		<i class="glyphicon glyphicon-search"></i>
 	</div>
 	<div class="search-box-container col-xs-11">
-		<input type="text" id="searchBox" class="form-control" placeholder="Search Items">
+		<input type="text" id="searchItems" oninput="search_items(this.value)" class="form-control search-box" placeholder="Search Items">
 	</div>
 </div>
 <div class="items-container">
@@ -14,21 +14,7 @@
 			<div class="item" id="{{meal.id}}" data-toggle="modal" data-target="#qtyModal" onclick="open_product_qty(this.id)">
 				<span class="item-name">{{meal.name}}</span>
 				<div>
-					<span class="item-price">Php {{meal.price}}</span>
-				</div>
-			</div>
-		</div>
-		{% endfor %}
-	</div>
-
-	<div class="item-group col-xs-12">
-		<h4 class="item-category-label">UNLI Rice Meals</h4>
-		{% for meal in unli_rice_meals %}
-		<div class="col-xs-3">
-			<div class="item" id="{{meal.id}}" data-toggle="modal" data-target="#qtyModal" onclick="open_product_qty(this.id)">
-				<span class="item-name">{{meal.name}}</span>
-				<div>
-					<span class="item-price">Php {{meal.price}}</span>
+					<span class="item-price">&#8369; {{meal.price}}</span>
 				</div>
 			</div>
 		</div>
@@ -42,7 +28,7 @@
 			<div class="item" id="{{meal.id}}" data-toggle="modal" data-target="#qtyModal" onclick="open_product_qty(this.id)">
 				<span class="item-name">{{meal.name}}</span>
 				<div>
-					<span class="item-price">Php {{meal.price}}</span>
+					<span class="item-price">&#8369; {{meal.price}}</span>
 				</div>
 			</div>
 		</div>
@@ -56,21 +42,7 @@
 			<div class="item" id="{{meal.id}}" data-toggle="modal" data-target="#qtyModal" onclick="open_product_qty(this.id)">
 				<span class="item-name">{{meal.name}}</span>
 				<div>
-					<span class="item-price">Php {{meal.price}}</span>
-				</div>
-			</div>
-		</div>
-		{% endfor %}
-	</div>
-
-	<div class="item-group col-xs-12">
-		<h4 class="item-category-label">ASIAN Meals</h4>
-		{% for meal in asian_meal %}
-		<div class="col-xs-3">
-			<div class="item" id="{{meal.id}}" data-toggle="modal" data-target="#qtyModal" onclick="open_product_qty(this.id)">
-				<span class="item-name">{{meal.name}}</span>
-				<div>
-					<span class="item-price">Php {{meal.price}}</span>
+					<span class="item-price">&#8369; {{meal.price}}</span>
 				</div>
 			</div>
 		</div>
@@ -84,7 +56,21 @@
 			<div class="item" id="{{meal.id}}" data-toggle="modal" data-target="#qtyModal" onclick="open_product_qty(this.id)">
 				<span class="item-name">{{meal.name}}</span>
 				<div>
-					<span class="item-price">Php {{meal.price}}</span>
+					<span class="item-price">&#8369; {{meal.price}}</span>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+	<div class="item-group col-xs-12">
+		<h4 class="item-category-label">Potato Shit</h4>
+		{% for shit in potato_shit %}
+		<div class="col-xs-3">
+			<div class="item" id="{{shit.id}}" data-toggle="modal" data-target="#qtyModal" onclick="open_product_qty(this.id)">
+				<span class="item-name">{{shit.name}}</span>
+				<div>
+					<span class="item-price">&#8369; {{shit.price}}</span>
 				</div>
 			</div>
 		</div>
@@ -98,7 +84,7 @@
 			<div class="item" id="{{addon.id}}" data-toggle="modal" data-target="#qtyModal" onclick="open_product_qty(this.id)">
 				<span class="item-name">{{addon.name}}</span>
 				<div>
-					<span class="item-price">Php {{addon.price}}</span>
+					<span class="item-price">&#8369; {{addon.price}}</span>
 				</div>
 			</div>
 		</div>
@@ -112,7 +98,7 @@
 			<div class="item" id="{{drink.id}}" data-toggle="modal" data-target="#qtyModal" onclick="open_product_qty(this.id)">
 				<span class="item-name">{{drink.name}}</span>
 				<div>
-					<span class="item-price">Php {{drink.price}}</span>
+					<span class="item-price">&#8369; {{drink.price}}</span>
 				</div>
 			</div>
 		</div>
@@ -126,7 +112,7 @@
 			<div class="item" id="{{item.id}}" data-toggle="modal" data-target="#qtyModal" onclick="open_product_qty(this.id)">
 				<span class="item-name">{{item.name}}</span>
 				<div>
-					<span class="item-price">Php {{item.price}}</span>
+					<span class="item-price">&#8369; {{item.price}}</span>
 				</div>
 			</div>
 		</div>

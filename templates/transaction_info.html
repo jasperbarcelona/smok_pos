@@ -9,7 +9,8 @@
     </div>
 </div>
 <div class="transaction-modal-table-container">
-    <h4>Customer: {{transaction.customer_name}}</h4>
+    <h4>Customer: {{transaction.customer_name}}</h4><br />
+    <h5>Card No: {{transaction.card_no}}</h5>
     <br />
     <table class="table">
         <thead>
@@ -30,7 +31,7 @@
                 {% endif %}
                 <td class="align-left">{{item.item_name}}</td>
                 <td class="align-right">{{item.item_qty}}</td>
-                <td class="align-right">Php {{item.price}}</td>
+                <td class="align-right">&#8369; {{item.price}}</td>
             </tr>
             {% endfor %}
             <tr>
@@ -39,18 +40,18 @@
                 {% endif %}
                 <td class="align-left"></td>
                 <td id="payLaterTotal" class="align-right"><strong>Total</strong></td>
-                <td class="align-right"><strong>Php {{transaction.total}}</strong></td>
+                <td class="align-right"><strong>&#8369; {{transaction.total}}</strong></td>
             </tr>
             {% if transaction.payed %}
             <tr>
                 <td class="align-left"></td>
                 <td class="align-right">Amount Tendered</td>
-                <td class="align-right">Php {{transaction.amount_tendered}}</td>
+                <td class="align-right">&#8369; {{transaction.amount_tendered}}</td>
             </tr>
             <tr>
                 <td class="align-left"></td>
                 <td class="align-right">Change</td>
-                <td class="align-right">Php {{transaction.change}}</td>
+                <td class="align-right">&#8369; {{transaction.change}}</td>
             </tr>
             {% endif %}
         </tbody>
@@ -60,8 +61,14 @@
     <div class="transaction-info-btn-container">
         {% if transaction.payed %}
         <button type="button" data-dismiss="modal" id="transactionInfoOkay" class="btn btn-primary">Okay</button>
+        {% if not transaction.card_no %}
+        <button type="button" data-toggle="modal" data-target="#useLoyaltyModal" id="addLoyaltyBtn" class="btn btn-primary">Use Loyalty</button>
+        {% endif %}
         {% else %}
         <button type="button" id="transactionInfoPay" data-toggle="modal" data-target="#payTransactionModal" class="btn btn-success" onclick="get_tendered_later({{transaction.id}})">Pay</button>
+        {% if not transaction.card_no %}
+        <button type="button" data-toggle="modal" data-target="#useLoyaltyModal" id="addLoyaltyBtn" class="btn btn-primary">Use Loyalty</button>
+        {% endif %}
         <button type="button" id="transactionInfoDelete" class="btn btn-danger" onclick="void_transaction({{transaction.id}})" data-toggle="modal" data-target="#voidPasswordModal">Void</button>
         <button type="button" data-dismiss="modal" id="transactionInfoClose" class="btn btn-danger">Close</button>
         {% endif %}
